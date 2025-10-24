@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: ssp-game-api
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui.path: /swagger-ui.html
+  packages-to-scan: com.db.ssp_game_api
