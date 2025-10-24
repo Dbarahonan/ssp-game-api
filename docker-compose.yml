@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  ssp-game-api:
+    tty: true
+    build:
+      context: ./
+    environment:
+      - PROFILE=dev
+    ports:
+      - "8080:8080"
+    networks:
+      - app
+
+networks:
+  app:
