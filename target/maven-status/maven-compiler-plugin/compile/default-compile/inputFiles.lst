@@ -1,1 +1,11 @@
 /home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/SspGameApiApplication.java
+/home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/application/service/ComputerMove.java
+/home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/application/service/EasyComputerMove.java
+/home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/application/service/GameService.java
+/home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/application/service/HardComputerMove.java
+/home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/domain/model/GameLevel.java
+/home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/domain/model/GameMove.java
+/home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/domain/model/GameResult.java
+/home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/rest/GameController.java
+/home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/rest/model/PlayRequest.java
+/home/diego/Documents/Workspace/ssp-game-api/src/main/java/com/db/ssp_game_api/rest/model/PlayResponse.java
