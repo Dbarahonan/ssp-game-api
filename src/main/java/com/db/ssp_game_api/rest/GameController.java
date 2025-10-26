@@ -4,6 +4,7 @@ package com.db.ssp_game_api.rest;
 import com.db.ssp_game_api.application.service.GameService;
 import com.db.ssp_game_api.domain.model.GameResult;
 import com.db.ssp_game_api.rest.model.PlayRequest;
+import com.db.ssp_game_api.rest.model.PlayResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -27,7 +28,11 @@ public class GameController {
             @ApiResponse(responseCode = "400", description = "Invalid request")
     })
     @PostMapping("/play")
-    public ResponseEntity<GameResult> play(@RequestBody PlayRequest playRequest){
-        return new ResponseEntity<>(gameService.play(playRequest.getPlayerMove(),playRequest.getLevel()), HttpStatus.OK);
+    public ResponseEntity<PlayResponse> play(@RequestBody PlayRequest playRequest){
+        GameResult result = gameService.play(playRequest.getPlayerMove(), playRequest.getLevel());
+        PlayResponse response = PlayResponse.builder()
+                .result(result)
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
