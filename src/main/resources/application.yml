@@ -1,6 +1,12 @@
 spring:
   application:
     name: ssp-game-api
+  ai:
+    openai:
+      api-key: ${OPEN_AI_KEY}
+    chat:
+      options:
+        model: gpt-5-nano
 springdoc:
   api-docs:
     path: /v3/api-docs
