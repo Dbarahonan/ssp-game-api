@@ -1,31 +1,82 @@
-# Read Me First
-The following was discovered as part of building this project:
+# ssp-game-api
 
-* The original package name 'com.db.ssp-game-api' is invalid and this project uses 'com.db.ssp_game_api' instead.
+Small service implementing a Stone-Scissors-Paper (ssp) game with two move strategies:
+- `AI` — move chosen by calling an external AI provider (OpenAI via Spring AI).
+- `RANDOM` — deterministic or random local strategy (no external call).
 
-# Getting Started
+This README covers configuration, running (Maven and Docker), observability (Swagger, OpenAPI, Actuator), endpoints, examples, and deployment notes.
 
-### Reference Documentation
-For further reference, please consider the following sections:
+## Tech stack
+- Java 21
+- Spring Boot 3.5.6
+- Springdoc OpenAPI / Swagger UI
+- Spring AI / OpenAI provider (optional, configured via env var)
+- Maven
+- Docker / Docker Compose
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.5.6/maven-plugin)
-* [Create an OCI image](https://docs.spring.io/spring-boot/3.5.6/maven-plugin/build-image.html)
-* [Spring Web](https://docs.spring.io/spring-boot/3.5.6/reference/web/servlet.html)
-* [Spring Boot Actuator](https://docs.spring.io/spring-boot/3.5.6/reference/actuator/index.html)
+## Configuration
+- Environment variables:
+    - `OPEN_AI_KEY` — OpenAI API key example:
+        - `OPEN_AI_KEY=sk-REPLACE_WITH_YOUR_KEY`
+- Local config file: `src/main/resources/application-dev.yml` reads the key from the environment.
+- Additional Spring properties and actuator endpoints can be set in `application.yml` / `application-dev.yml`.
 
-### Guides
-The following guides illustrate how to use some features concretely:
+## Build & Run (Maven)
+1. Build:
+    - `mvn clean package -DskipTests`
+2. Run (local profile; ensure `OPEN_AI_KEY` is set in your shell when using `AI` strategy):
+    - `mvn spring-boot:run -Dspring-boot.run.profiles=dev`
+3. Run tests:
+    - `mvn test`
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
-* [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
+## Docker
+- With Docker Compose (recommended for local development):
+    - `docker compose up --build`  \- this forces rebuild of images before starting containers.
+    - Make sure set `OPEN_AI_KEY` in the application-dev.yml or use an env file.
 
-### Maven Parent overrides
+## Observability & Docs
+- Swagger UI (Springdoc):
+    - `http://localhost:8080/swagger-ui/index.html`
+- OpenAPI JSON:
+    - `http://localhost:8080/v3/api-docs`
+- Actuator endpoints:
+    - `http://localhost:8080/actuator/health`
+    - Enable additional endpoints in `application.yml` as needed.
 
-Due to Maven's design, elements are inherited from the parent POM to the project POM.
-While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the parent.
-To prevent this, the project POM contains empty overrides for these elements.
-If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
+## API Endpoints (summary)
+- POST `/api/v1/ssp/play`
+    - Purpose: Play one round. Client supplies the player move and desired level. Server returns chosen move by computer and round result.
+    - Request JSON:
+      ```json
+      {
+        "playerMove": "STONE",
+        "level": "EASY" 
+      }
+      ```
+    - Curl example:
+      ```bash
+      curl -X POST http://localhost:8080/api/v1/ssp/play \
+        -H "Content-Type: application/json" \
+        -d '{"playerMove":"STONE","level":"EASY"}'
+      ```
+    - Example response (JSON):
+      ```json
+      {
+        "computerMove": "PAPER",
+        "result": "LOSE"
+      }
+      ```
+    - Notes:
+        - When `level` is `HARD`, the service will call the OpenAI provider (requires `OPEN_AI_KEY`).
+        - When `level` is `EASY`, no external call is made and a local algorithm determines the computer move.
+
+## Error handling & HTTP statuses
+- `200` OK — success
+- `400` Bad Request — invalid input (e.g., unknown move or missing fields)
+- `500` Internal Server Error — unexpected server error
+
+## Security
+- `OPEN_AI_KEY` is sensitive. Never commit it to source control.
+
+
 

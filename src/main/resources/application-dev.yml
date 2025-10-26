@@ -1,4 +1,1 @@
-spring:
-  ai:
-    openai:
-      api-key: 12345
+OPEN_AI_KEY: your_api_key_here # Replace with your OpenAI API key
