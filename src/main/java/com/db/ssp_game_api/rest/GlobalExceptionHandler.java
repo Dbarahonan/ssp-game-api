@@ -44,6 +44,7 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(
                         ErrorResponse.builder()
+                                .code("SERVER_ERROR")
                                 .message("Unexpected error: " + ex.getMessage())
                                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                                 .timestamp(System.currentTimeMillis())

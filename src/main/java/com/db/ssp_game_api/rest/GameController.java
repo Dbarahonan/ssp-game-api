@@ -31,10 +31,7 @@ public class GameController {
     })
     @PostMapping("/play")
     public ResponseEntity<PlayResponse> play(@RequestBody @Valid PlayRequest playRequest){
-        GameResult result = gameService.play(playRequest.getPlayerMove(), playRequest.getLevel());
-        PlayResponse response = PlayResponse.builder()
-                .result(result)
-                .build();
+        PlayResponse response = gameService.play(playRequest.getPlayerMove(), playRequest.getLevel());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
