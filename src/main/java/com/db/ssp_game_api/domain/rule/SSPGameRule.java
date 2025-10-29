@@ -5,7 +5,7 @@ import com.db.ssp_game_api.domain.model.GameResult;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StonePaperScissorsRule implements GameRule {
+public class SSPGameRule implements GameRule {
     @Override
     public GameResult determineResult(GameMove playerMove, GameMove computerMove) {
         if (playerMove.equals(computerMove)) {

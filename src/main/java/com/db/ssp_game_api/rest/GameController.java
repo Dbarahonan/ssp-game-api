@@ -1,7 +1,7 @@
 package com.db.ssp_game_api.rest;
 
 
-import com.db.ssp_game_api.application.service.GameService;
+import com.db.ssp_game_api.application.service.SSPGameService;
 import com.db.ssp_game_api.rest.model.PlayRequest;
 import com.db.ssp_game_api.rest.model.PlayResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/ssp")
 @RequiredArgsConstructor
 public class GameController {
-    private final GameService gameService;
+    private final SSPGameService gameService;
 
     @Operation(summary = "Play stone, paper, scissors")
     @ApiResponses(value = {
