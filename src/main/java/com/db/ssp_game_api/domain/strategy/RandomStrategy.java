@@ -11,7 +11,15 @@ import java.util.Random;
 public class RandomStrategy implements Strategy {
 
     private static final String LOG_HEADER = "[API][RandomMoveStrategy]";
-    private final Random random = new Random();
+    private final Random random;
+
+    public RandomStrategy() {
+        this.random = new Random();
+    }
+
+    public RandomStrategy(Random random) {
+        this.random = random;
+    }
 
     @Override
     public GameMove getMove() {
