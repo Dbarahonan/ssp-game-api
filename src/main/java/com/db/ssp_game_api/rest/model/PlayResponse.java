@@ -8,6 +8,6 @@ import lombok.Getter;
 @Getter
 @Builder
 public class PlayResponse {
-    GameResult result;
     GameMove computerMove;
+    GameResult result;
 }
