@@ -1,7 +1,7 @@
 package com.db.ssp_game_api.rest;
 
 
-import com.db.ssp_game_api.application.game.GameService;
+import com.db.ssp_game_api.application.service.GameService;
 import com.db.ssp_game_api.rest.model.PlayRequest;
 import com.db.ssp_game_api.rest.model.PlayResponse;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,9 +1,9 @@
-package com.db.ssp_game_api.application.game;
+package com.db.ssp_game_api.application.service;
 
-import com.db.ssp_game_api.application.rules.GameRule;
+import com.db.ssp_game_api.domain.rule.GameRule;
 import com.db.ssp_game_api.application.exceptions.GameException;
-import com.db.ssp_game_api.application.strategies.Strategy;
-import com.db.ssp_game_api.application.strategies.StrategyName;
+import com.db.ssp_game_api.domain.strategy.Strategy;
+import com.db.ssp_game_api.domain.strategy.StrategyName;
 import com.db.ssp_game_api.domain.model.GameMove;
 import com.db.ssp_game_api.domain.model.GameResult;
 import com.db.ssp_game_api.rest.model.PlayResponse;

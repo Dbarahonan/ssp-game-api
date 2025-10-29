@@ -1,4 +1,4 @@
-package com.db.ssp_game_api.application.rules;
+package com.db.ssp_game_api.domain.rule;
 
 import com.db.ssp_game_api.domain.model.GameMove;
 import com.db.ssp_game_api.domain.model.GameResult;

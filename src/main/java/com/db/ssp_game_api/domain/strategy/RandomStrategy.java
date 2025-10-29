@@ -1,4 +1,4 @@
-package com.db.ssp_game_api.application.strategies;
+package com.db.ssp_game_api.domain.strategy;
 
 import com.db.ssp_game_api.domain.model.GameMove;
 import lombok.extern.slf4j.Slf4j;

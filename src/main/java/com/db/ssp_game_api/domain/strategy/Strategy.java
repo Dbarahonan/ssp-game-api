@@ -1,4 +1,4 @@
-package com.db.ssp_game_api.application.strategies;
+package com.db.ssp_game_api.domain.strategy;
 
 import com.db.ssp_game_api.domain.model.GameMove;
 

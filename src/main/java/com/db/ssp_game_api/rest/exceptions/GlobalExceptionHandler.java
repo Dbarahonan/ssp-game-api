@@ -1,4 +1,4 @@
-package com.db.ssp_game_api.rest;
+package com.db.ssp_game_api.rest.exceptions;
 
 import com.db.ssp_game_api.rest.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
