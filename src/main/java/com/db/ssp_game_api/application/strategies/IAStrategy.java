@@ -1,6 +1,5 @@
 package com.db.ssp_game_api.application.strategies;
 
-import com.db.ssp_game_api.domain.model.GameLevel;
 import com.db.ssp_game_api.domain.model.GameMove;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
@@ -10,11 +9,11 @@ import java.util.Objects;
 
 @Slf4j
 @Service
-public class IAMoveStrategy implements MoveStrategy {
+public class IAStrategy implements Strategy {
     private final String LOG_HEADER = "[API][IAMoveStrategy]";
     private final ChatClient chatClient;
 
-    public IAMoveStrategy(ChatClient.Builder builder) {
+    public IAStrategy(ChatClient.Builder builder) {
         this.chatClient = builder.build();
     }
 
@@ -34,7 +33,7 @@ public class IAMoveStrategy implements MoveStrategy {
     }
 
     @Override
-    public GameLevel getLevel() {
-        return GameLevel.HARD;
+    public StrategyName getName() {
+        return StrategyName.IA;
     }
 }

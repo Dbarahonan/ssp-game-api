@@ -1,9 +1,8 @@
 package com.db.ssp_game_api.application.strategies;
 
-import com.db.ssp_game_api.domain.model.GameLevel;
 import com.db.ssp_game_api.domain.model.GameMove;
 
-public interface MoveStrategy {
+public interface Strategy {
     GameMove getMove();
-    GameLevel getLevel();
+    StrategyName getName();
 }

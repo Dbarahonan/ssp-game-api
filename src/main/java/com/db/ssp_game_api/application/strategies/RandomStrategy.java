@@ -1,6 +1,5 @@
 package com.db.ssp_game_api.application.strategies;
 
-import com.db.ssp_game_api.domain.model.GameLevel;
 import com.db.ssp_game_api.domain.model.GameMove;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,7 @@ import java.util.Random;
 
 @Slf4j
 @Service
-public class RandomMoveStrategy implements MoveStrategy {
+public class RandomStrategy implements Strategy {
 
     private final String LOG_HEADER = "[API][RandomMoveStrategy]";
     private final Random random = new Random();
@@ -22,7 +21,7 @@ public class RandomMoveStrategy implements MoveStrategy {
     }
 
     @Override
-    public GameLevel getLevel() {
-        return GameLevel.EASY;
+    public StrategyName getName() {
+        return StrategyName.RANDOM;
     }
 }

@@ -45,19 +45,19 @@ This README covers configuration, running (Maven and Docker), observability (Swa
 
 ## API Endpoints (summary)
 - POST `/api/v1/ssp/play`
-    - Purpose: Play one round. Client supplies the player move and desired level. Server returns chosen move by computer and round result.
+    - Purpose: Play one round. Client supplies the player move and desired strategy. Server returns chosen move by computer and round result.
     - Request JSON:
       ```json
       {
         "playerMove": "STONE",
-        "level": "EASY" 
+        "strategyName": "RANDOM" 
       }
       ```
     - Curl example:
       ```bash
       curl -X POST http://localhost:8080/api/v1/ssp/play \
         -H "Content-Type: application/json" \
-        -d '{"playerMove":"STONE","level":"EASY"}'
+        -d '{"playerMove":"STONE","strategyName":"RANDOM"}'
       ```
     - Example response (JSON):
       ```json
@@ -67,8 +67,8 @@ This README covers configuration, running (Maven and Docker), observability (Swa
       }
       ```
     - Notes:
-        - When `level` is `HARD`, the service will call the OpenAI provider (requires `OPEN_AI_KEY`).
-        - When `level` is `EASY`, no external call is made and a local algorithm determines the computer move.
+        - When `strategy` is `IA`, the service will call the OpenAI provider (requires `OPEN_AI_KEY`).
+        - When `strategy` is `RANDOM`, no external call is made and a local algorithm determines the computer move.
 
 ## Error handling & HTTP statuses
 - `200` OK — success

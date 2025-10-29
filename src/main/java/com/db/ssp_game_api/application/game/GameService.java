@@ -2,8 +2,8 @@ package com.db.ssp_game_api.application.game;
 
 import com.db.ssp_game_api.application.rules.GameRule;
 import com.db.ssp_game_api.application.exceptions.GameException;
-import com.db.ssp_game_api.application.strategies.MoveStrategy;
-import com.db.ssp_game_api.domain.model.GameLevel;
+import com.db.ssp_game_api.application.strategies.Strategy;
+import com.db.ssp_game_api.application.strategies.StrategyName;
 import com.db.ssp_game_api.domain.model.GameMove;
 import com.db.ssp_game_api.domain.model.GameResult;
 import com.db.ssp_game_api.rest.model.PlayResponse;
@@ -19,19 +19,19 @@ import java.util.stream.Collectors;
 public class GameService {
 
     private final String LOG_HEADER = "[API][GameService]";
-    private final Map<GameLevel, MoveStrategy> moveStrategyMap;
+    private final Map<StrategyName, Strategy> strategyMap;
     private final GameRule gameRule;
 
-    public GameService(List<MoveStrategy> moveStrategies, GameRule gameRule) {
-        this.moveStrategyMap = moveStrategies.stream()
-                .collect(Collectors.toMap(MoveStrategy::getLevel, s -> s));
+    public GameService(List<Strategy> moveStrategies, GameRule gameRule) {
+        this.strategyMap = moveStrategies.stream()
+                .collect(Collectors.toMap(Strategy::getName, s -> s));
         this.gameRule = gameRule;
     }
 
-    public PlayResponse play(GameMove playerMove, GameLevel level) {
-        log.info("{} player chooses {} and level {}", LOG_HEADER, playerMove, level);
+    public PlayResponse play(GameMove playerMove, StrategyName strategyName) {
+        log.info("{} player chooses {} and strategy {}", LOG_HEADER, playerMove, strategyName);
         try {
-            MoveStrategy strategy = moveStrategyMap.get(level);
+            Strategy strategy = strategyMap.get(strategyName);
             GameMove computerMove = strategy.getMove();
 
             log.info("{} computer chooses {}", LOG_HEADER, computerMove);
@@ -45,10 +45,10 @@ public class GameService {
                     .computerMove(computerMove)
                     .build();
         } catch (Exception e) {
-            log.error("{} Error during game play with playerMove={} and level={}",
-                    LOG_HEADER, playerMove, level, e);
+            log.error("{} Error during game play with playerMove={} and strategy={}",
+                    LOG_HEADER, playerMove, strategyName, e);
             throw new GameException(
-                    String.format("Failed to play game for move '%s' at level '%s'", playerMove, level),
+                    String.format("Failed to play game for move '%s' and strategy '%s'", playerMove, strategyName),
                     e
             );
         }

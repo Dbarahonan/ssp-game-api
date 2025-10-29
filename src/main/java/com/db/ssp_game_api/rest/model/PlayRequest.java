@@ -1,6 +1,6 @@
 package com.db.ssp_game_api.rest.model;
 
-import com.db.ssp_game_api.domain.model.GameLevel;
+import com.db.ssp_game_api.application.strategies.StrategyName;
 import com.db.ssp_game_api.domain.model.GameMove;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -10,5 +10,5 @@ public class PlayRequest {
     @NotNull
     GameMove playerMove;
     @NotNull
-    GameLevel level;
+    StrategyName strategyName;
 }
