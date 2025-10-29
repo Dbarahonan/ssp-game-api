@@ -10,7 +10,7 @@ import java.util.Random;
 @Service
 public class RandomStrategy implements Strategy {
 
-    private final String LOG_HEADER = "[API][RandomMoveStrategy]";
+    private static final String LOG_HEADER = "[API][RandomMoveStrategy]";
     private final Random random = new Random();
 
     @Override

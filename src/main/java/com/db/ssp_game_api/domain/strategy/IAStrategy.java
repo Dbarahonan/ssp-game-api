@@ -10,7 +10,7 @@ import java.util.Objects;
 @Slf4j
 @Service
 public class IAStrategy implements Strategy {
-    private final String LOG_HEADER = "[API][IAMoveStrategy]";
+    private static final String LOG_HEADER = "[API][IAMoveStrategy]";
     private final ChatClient chatClient;
 
     public IAStrategy(ChatClient.Builder builder) {

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class GameService {
 
-    private final String LOG_HEADER = "[API][GameService]";
+    private static final String LOG_HEADER = "[API][GameService]";
     private final Map<StrategyName, Strategy> strategyMap;
     private final GameRule gameRule;
 
