@@ -77,6 +77,3 @@ This README covers configuration, running (Maven and Docker), observability (Swa
 
 ## Security
 - `OPEN_AI_KEY` is sensitive. Never commit it to source control.
-
-
-
