@@ -12,3 +12,25 @@ springdoc:
     path: /v3/api-docs
   swagger-ui.path: /swagger-ui.html
   packages-to-scan: com.db.ssp_game_api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ssp-game-api
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: ssp-game-api
+    description: API for SSP Game
+    version: 1.0.0
+    author: Diego B.
