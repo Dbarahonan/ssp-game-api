@@ -40,8 +40,10 @@ This README covers configuration, running (Maven and Docker), observability (Swa
 - OpenAPI JSON:
     - `http://localhost:8080/v3/api-docs`
 - Actuator endpoints:
-    - `http://localhost:8080/actuator/health`
-    - Enable additional endpoints in `application.yml` as needed.
+    - Health: http://localhost:8080/actuator/health (shows components and details)
+    - Info: http://localhost:8080/actuator/info (shows app info, version, author)
+    - Metrics: http://localhost:8080/actuator/metrics
+    - Prometheus format: http://localhost:8080/actuator/prometheus
 
 ## API Endpoints (summary)
 - POST `/api/v1/ssp/play`
@@ -77,3 +79,11 @@ This README covers configuration, running (Maven and Docker), observability (Swa
 
 ## Security
 - `OPEN_AI_KEY` is sensitive. Never commit it to source control.
+
+## Observability Notes
+
+Thanks to Micrometer + Spring Boot Actuator, the service exposes:
+
+- Metrics for HTTP requests, JVM, CPU, memory, threads, Tomcat sessions, etc.
+- `/actuator/prometheus` endpoint ready to be scraped by Prometheus.
+- Custom application tags (`application: ssp-game-api`) and `info:` enabled.
